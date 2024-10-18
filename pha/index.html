@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .hcn {
+        background: blue;
+        display: block;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title text-center">
+      Vẽ hình chữ nhật với 4 thanh sắt với chiều dài bất kỳ
+    </h1>
+    <div class="row">
+      <div class="col-md-10 border border-warning" style="position: relative; display: inline-block;">
+        <div class="hcn m-1"></div>
+      </div>
+      <div class="col-md-2 border border-danger-subtle">
+        <div class="input-group input-group-sm mb-3 mt-2">
+          <span class="input-group-text" id="inputGroup-sizing-sm"
+            >Thanh a</span
+          >
+          <input
+            max="1000"
+            type="number"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+            id="a"
+          />
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm"
+            >Thanh b</span
+          >
+          <input
+            type="number"
+            max="1000"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+            id="b"
+          />
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm"
+            >Thanh c</span
+          >
+          <input
+            type="number"
+            max="1000"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+            id="c"
+          />
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm"
+            >Thanh d</span
+          >
+          <input
+            type="number"
+            max="1000"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+            id="d"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-success mt-2"
+          aria-label="Close"
+          onclick="generateHCN()"
+        >
+          Generate
+        </button>
+        <p class="hcn-width"></p>
+        <p class="hcn-height"></p>
+        <p class="last-a"></p>
+        <p class="last-b"></p>
+        <p class="last-c"></p>
+        <p class="last-d"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    function generateHCN() {
+      const a = document.querySelector("#a").value;
+      const b = document.querySelector("#b").value;
+      const c = document.querySelector("#c").value;
+      const d = document.querySelector("#d").value;
+      caculating(a, b, c, d);
+    }
+
+    function caculating(a, b, c, d) {
+      const hcn = document.querySelector(".hcn");
+      const lastA = document.querySelector(".last-a");
+      const lastB = document.querySelector(".last-b");
+      const lastC = document.querySelector(".last-c");
+      const lastD = document.querySelector(".last-d");
+      const hcnW = document.querySelector(".hcn-width");
+      const hcnH = document.querySelector(".hcn-height");
+      let width = 0;
+      let height = 0;
+
+      if (a == "" || b == "" || c == "" || d == "") {
+        alert("Vui lòng nhập đủ các tham số!");
+      } else {
+        if (a < c) {
+          width = a;
+        } else {
+          width = c;
+        }
+
+        if (b < d) {
+          height = b;
+        } else {
+          height = d;
+        }
+
+        lastA.textContent = `Chiều dài còn lại của a: ${Math.abs(width - a)}`;
+        lastB.textContent = `Chiều dài còn lại của b: ${Math.abs(height - b)}`;
+        lastC.textContent = `Chiều dài còn lại của c: ${Math.abs(width - c)}`;
+        lastD.textContent = `Chiều dài còn lại của d: ${Math.abs(height - d)}`;
+        hcnW.textContent = `Chiều dài của hình chữ nhật: ${height}`;
+        hcnH.textContent = `Chiều rộng của hình chữ nhật: ${width}`;
+        hcn.style.width = `${width}px`;
+        hcn.style.height = `${height}px`;
+      }
+    }
+  </script>
+</html>
